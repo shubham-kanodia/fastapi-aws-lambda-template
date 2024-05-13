@@ -4,3 +4,4 @@ pydantic==1.10.7
 envyaml~=1.10.211231
 python-jose[cryptography]
 passlib[bcrypt]
+mangum

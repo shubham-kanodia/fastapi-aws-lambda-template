@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless FastAPI application.
+
+Resources:
+  FastAPIFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: api.main.handler
+      Runtime: python3.10
+      Events:
+        HttpRoot:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+        HttpSubPaths:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY

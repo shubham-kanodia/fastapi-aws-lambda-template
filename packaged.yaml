@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: An AWS Serverless FastAPI application.
+Resources:
+  FastAPIFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://invictus-deployment-artifacts/be7cd255677994b1aae11411d5f02b72
+      Handler: api.main.handler
+      Runtime: python3.10
+      Events:
+        HttpRoot:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+        HttpSubPaths:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+    Metadata:
+      SamResourceId: FastAPIFunction
